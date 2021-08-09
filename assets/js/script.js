@@ -1,6 +1,6 @@
 // appId = "faa63307397f9a8437455fc4cacc3cd2";
-// var currentCity = "";
-// var lastCity = "";
+// var currentCity = ""; ??
+// var lastCity = ""; ??
 
 $(document).ready(function() {
         $("#form-submit").submit(function(event) {
@@ -46,4 +46,4 @@ function formatSearch(jsonObject) {
 
 
 
-$("forecast").show();
+// $("forecast").show(); ??
