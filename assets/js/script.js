@@ -46,9 +46,4 @@ function formatSearch(jsonObject) {
 
 
 
-
-
-
-
-$("#current-conditions").show();
-$("#fiveDay-forecast").show();
+$("forecast").show();
