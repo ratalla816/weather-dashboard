@@ -2,7 +2,37 @@ body {
 	font-family: ui-sans-serif;
  }
     
+ .hero { 
+  background-image: url('../images/lightning.jpg');
+  background-size: cover;
+  background-position: center;
+ 
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-attachment: fixed;
+  background-position: 30%;
+}
 
+.hero-excel {
+  width: 35%;
+  text-align: right;
+  margin: 3.5%;
+  font-weight: bold;
+  color: whitesmoke;
+  font-size: 24px;
+  line-height: 1.2;
+  text-shadow: 0 0 5px rgba(0, 0, 0);
+}
+
+label {
+  font-weight: bold;
+}
+
+.form-text {
+  font-weight: bold;
+}
 
 h1{
 	text-align: center;
