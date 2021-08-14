@@ -2,6 +2,7 @@
 // var currentCity = ""; ??
 // var lastCity = ""; ??
 
+// Step one - get current weather
 $(document).ready(function() {
         $("#form-submit").submit(function(event) {
             performSearch(event);
@@ -31,11 +32,27 @@ function formatSearch(jsonObject) {
         var city_name = jsonObject.name;
         var city_weather = jsonObject.weather[0].main;
         var city_temp = jsonObject.main.temp;
+        var cityUvIndex = jsonObject.main.uvIndex;
         
-
+// Display current weather data
         $("#city-name").text(city_name);
         $("#city-weather").text(city_weather);
         $("#city-temp").text(city_temp+ "℉");
+
+        // use another fetch (openweathermap.org) to get UVI
+        $("#cityUvIndex").text("UV Index" +cityUvIndex);
+
+        cityUvIndex.addClass; {
+            if (uvIndex>=0 && uvIndex<3) {
+               cityUvIndex.attr(uv-dangerLow);
+            
+            } else if (uvIndex>=3 && uvIndex<8) {
+                cityUvIndex.attr(uv-dangerMedium);
+              
+            } else if  (uvindex>=8) {
+                cityUvIndex.attr(uv-dangerHigh);
+              }
+
 }
 
 
@@ -43,7 +60,7 @@ function formatSearch(jsonObject) {
 
 
 
-
+}
 
 
 // $("forecast").show(); ??
