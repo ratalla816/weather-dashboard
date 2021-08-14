@@ -26,12 +26,20 @@ body {
   text-shadow: 0 0 5px rgba(0, 0, 0);
 }
 
+.form-group {
+	padding-left: 20%;
+}
+
 label {
   font-weight: bold;
 }
 
 .form-text {
   font-weight: bold;
+}
+
+.list-group {
+	padding-left: -30%;
 }
 
 h1{

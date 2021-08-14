@@ -28,33 +28,50 @@
     </div>
   </section>
   <br>
-  <div class="container">
-    <form id="form-submit">
-      <div class="form-group">
+  <div>
+	<div>  
+       <div class="container-fluid">
+	   <form id="form-submit">
+       <div class="form-group">
         <label>City: </label>
         <div class="col-4">
           <input type="text" class="form-control" id="city" placeholder="ex. Kansas City">
           <small class="form-text">Enter city name to access weather info.</small>
           <button type="submit" class="btn btn-primary mt-3">SEARCH</button>
         </div>
-        <br>
-    </form>
-    <p id="city-name"></p>
-    <p id="city-weather"></p>
-    <p id="city-temp"></p>
-    <p id="city-uvi"></p>
-  </div>
-  <div class="previous-searches">
-  </div>
-  </div>
-  </div>
+		<br>
+     </form>
+	 <div class="city-current row">
+		<ul id="city-name"></ul>
+		<ul id="city-weather"></ul>
+		<ul id="city-temp"></ul>
+		<ul id="city-uvi"></ul>
+	  <ul></ul>
+	  </div>
+	  
+	 <aside class="list-group col-3 mt-3" id="previous-searches">
+		<strong class="mb-1">previous searches</strong> 
+	 </aside>
+	
 
-  <section class="container col-8-right">
+ <!-- </aside> -->
+ 
+   	
+
+	<section id="forecast">
+	</section>
+   </div>
+ </div> 
+</div>
+
+
+
+  <!-- <section class="container col-8-right">
     <h2>Your five day forecast</h2>
     <div class="forecast">
     </div>
   </section>
-  </div>
+  </div> -->
 </body>
 
 </html>
