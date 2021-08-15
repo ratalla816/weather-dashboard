@@ -1,15 +1,15 @@
 // appId = "faa63307397f9a8437455fc4cacc3cd2";
 
-function createCityList(citySearchList) {
-    $("#search-results").empty();
-// Step one - ID the json objects 
-var keys = Object.keys(citySearchList);
-for (var i = 0; i < keys.length; i++) {
-    var cityListEntry = $("<button>")
+// function createCityList(citySearchList) {
+//     $("#search-results").empty();
+// // Step one - ID the json objects 
+// var keys = Object.keys(citySearchList);
+// for (var i = 0; i < keys.length; i++) {
+//     var cityListEntry = $("<button>")
 
-    // UL //
-    cityListEntry.addClass("list-group-item list-group-item-action");
-    cityListEntry.text(keys[i]);
+//     // UL //
+//     cityListEntry.addClass("list-group-item list-group-item-action");
+//     cityListEntry.text(keys[i]);
 
 
     $(document).ready(function() {
