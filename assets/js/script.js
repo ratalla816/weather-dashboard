@@ -1,15 +1,4 @@
-// appId = "faa63307397f9a8437455fc4cacc3cd2";
-
-// function createCityList(citySearchList) {
-//     $("#search-results").empty();
-// // Step one - ID the json objects 
-// var keys = Object.keys(citySearchList);
-// for (var i = 0; i < keys.length; i++) {
-//     var cityListEntry = $("<button>")
-
-//     // UL //
-//     cityListEntry.addClass("list-group-item list-group-item-action");
-//     cityListEntry.text(keys[i]);
+var key = 'faa63307397f9a8437455fc4cacc3cd2';
 
 
     $(document).ready(function() {
@@ -37,11 +26,20 @@
         });
 }
 
-function formatSearch(jsonObject) {
-        var city_name = jsonObject.name;
-        var city_weather = jsonObject.weather[0].main;
-        var city_temp = jsonObject.main.temp;
-        var cityUvIndex = jsonObject.main.uvIndex;
+var cityCurrentBody = $('.cityCurrentBody')
+function currentWeather() {
+	var apiCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${key}`;
+
+	$(cityCurrentBody).empty();
+
+	$.ajax({
+		url: apiCurrent,
+		method: 'GET',
+	}).then(function (response) {
+		$('.cityCurrentName').text(response.name);
+		$('.cityCurrentDate').text(date);
+		$('.icons').attr('src', `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`);
+
         
 // Display current weather data
         $("#city-name").text(city_name);
@@ -62,14 +60,13 @@ function formatSearch(jsonObject) {
                 cityUvIndex.attr(uv-dangerHigh);
               }
 
-}
+ var elOutlook = $('.fiveDay');
+
+function getOutlook() {
+var fetchOutlook = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${key}`;
 
 
+}}
 
+init();
 
-
-
-}
-
-
-// $("forecast").show(); ??
