@@ -52,6 +52,8 @@
 ![application screenshot](./assets/images/weather-dashboard-screenshot.jpg)
 #### acknowledgements
 
+* Nathan Szurek (Tutor)
+
 * Server-Side APIs Challenge: Weather Dashboard - KU Coding Bootcamp, Module 6 Challenge Assignment © 2021 Trilogy Education Services, LLC, a 2U, Inc.
 brand Confidential and Proprietary. All Rights Reserved.
 
