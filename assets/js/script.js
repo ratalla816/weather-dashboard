@@ -1,15 +1,27 @@
-var key = 'faa63307397f9a8437455fc4cacc3cd2';
+let key = 'faa63307397f9a8437455fc4cacc3cd2';
 
+function init() {
+  let prevSchSet = JSON.parse(localStorage.getItem('city'));
 
-    $(document).ready(function() {
-        $("#form-submit").submit(function(event) {
-            performSearch(event);
-        });
-});
+  if (prevSchSet !== null) {
+    prevSch = prevSchSet;
+  }
 
-    function performSearch(event) {
-        var request;
-        event.preventDefault();
+  persist();
+}
+
+let date = moment().format('dddd, MMMM Do YYYY');
+
+let dateTime = moment().format('YYYY-MM-DD HH:MM:SS');
+
+let cityCurrentMain = $('.cityCurrentMain');
+
+function currentWeather() {
+  let apiCurrent = "https://api.openweathermap.org/data/2.5/weather?q="
+    .concat(city, "&units=imperial&appid=").concat(key);
+
+  $(cityCurrentMain).empty();
+
 
         request = $.ajax({
             url:'https://api.openweathermap.org/data/2.5/weather',
@@ -50,20 +62,20 @@ function currentWeather() {
         $("#cityUvIndex").text("UV Index" +cityUvIndex);
 
         cityUvIndex.addClass; {
-            if (uvIndex>=0 && uvIndex<3) {
-               cityUvIndex.attr(uv-dangerLow);
             
-            } else if (uvIndex>=3 && uvIndex<8) {
-                cityUvIndex.attr(uv-dangerMedium);
-              
-            } else if  (uvindex>=8) {
-                cityUvIndex.attr(uv-dangerHigh);
+            if (uvi >= 0 && uvi <= 4) {
+                elUvi.attr('class', 'green');
+    
+              } else if (uvi > 5 && uvi <= 7) {
+                elUvi.attr("class", "orange");
+    
+              } else if (uvi > 8 && uvi <= 12) {
+                elUvi.attr("class", "red");
               }
 
  var elOutlook = $('.fiveDay');
 
-function getOutlook() {
-var fetchOutlook = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${key}`;
+
 
 
 }}

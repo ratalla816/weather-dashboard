@@ -66,22 +66,14 @@ h6 {
     
   /*  */
 /* add class to change color of cityUvIndex */
-.uv-dangerLow{
-    background-color: green;
-    border-radius: px;
-    color: white;
+.green {
+  background-color: lightgreen;
 }
 
-
-.uv-dangerMedium{
-    background-color: orange;
-    border-radius: px;
-    color: white;
+.orange {
+  background-color: orange;
 }
 
-
-.uv-dangerHigh{
-    background-color: orangered;
-    border-radius: px;
-    color: white;
+.red {
+  background-color: red;
 }
