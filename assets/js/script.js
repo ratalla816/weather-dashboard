@@ -10,6 +10,50 @@ function init() {
   persist();
 }
 
+let elStorage = $('.prevSch');
+
+function persist() {
+  elStorage.empty();
+
+  for (let i = 0; i < prevSch.length; i++) {
+    let elHistory = $('<row>');
+    let elButton = $('<button>').text("".concat(prevSch[i]));
+    elHistory.addClass('row prevTab');
+    elButton.addClass('btn btn-secondary prevTab');
+    elButton.attr('type', 'button');
+    elStorage.prepend(elHistory);
+    elHistory.append(elButton);
+  }
+
+  $('.histBtn').on("click", function (event) {
+    event.preventDefault();
+    city = $(this).text();
+    elOutlook.empty();
+    currentWeather();
+
+  });
+
+  
+}
+
+let prevSch = [];
+$('.search').on("click", function (event) {
+  event.preventDefault();
+
+  city = $(this).parent('.srcInit').siblings('.cityText')
+    .val()
+    .trim();
+
+  prevSch.push(city);
+  localStorage.setItem('city', JSON.stringify(prevSch));
+  elOutlook.empty();
+  persist();
+  currentWeather();
+
+  $("#prevSchSet").show();
+
+});
+
 let date = moment().format('dddd, MMMM Do YYYY');
 
 let dateTime = moment().format('YYYY-MM-DD HH:MM:SS');
@@ -22,8 +66,14 @@ function currentWeather() {
 
   $(cityCurrentMain).empty();
 
+  $.ajax
+    ({ url: apiCurrent, method: 'GET' })
 
-        request = $.ajax({
+
+        
+    
+    
+    request = $.ajax({
             url:'https://api.openweathermap.org/data/2.5/weather',
             type: "GET",
             data: {
@@ -62,7 +112,7 @@ function currentWeather() {
         $("#cityUvIndex").text("UV Index" +cityUvIndex);
 
         cityUvIndex.addClass; {
-            
+
             if (uvi >= 0 && uvi <= 4) {
                 elUvi.attr('class', 'green');
     
