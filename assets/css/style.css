@@ -64,16 +64,15 @@ h6 {
   }
    
     
-  /*  */
-/* add class to change color of cityUvIndex */
-.green {
-  background-color: lightgreen;
+  
+.low {
+  background-color: chartreuse;
 }
 
-.orange {
-  background-color: orange;
+.medium {
+  background-color: lightsalmon;
 }
 
-.red {
-  background-color: red;
+.barbeque {
+  background-color: hotpink;
 }

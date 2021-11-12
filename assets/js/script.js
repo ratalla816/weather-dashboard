@@ -11,7 +11,7 @@ function init() {
 }
 
 let elStorage = $('.prevSch');
-
+// dynamically creates buttons for previous searches //
 function persist() {
   elStorage.empty();
 
@@ -25,17 +25,34 @@ function persist() {
     elHistory.append(elButton);
   }
 
-  $('.histBtn').on("click", function (event) {
-    event.preventDefault();
-    city = $(this).text();
-    elOutlook.empty();
-    currentWeather();
+//   initiate search from search history buttons //
+//   $('.histBtn').on("click", function (event) {
+//     event.preventDefault();
+//     city = $(this).text();
+//     elOutlook.empty();
+//     currentWeather();
 
-  });
+//   });
 
   
 }
 
+// Why won't this the previous city button work?!?!? //
+function prevSchClick(e) {
+	
+	if (!elButton.matches('.histBtn')) {
+	  return;
+	}
+  
+	var btn = e.target;
+	var search = btn.getAttribute('city');
+	currentWeather(searchInit);
+	
+  }
+  
+//  *********************************************************** // 
+
+// Saves the search text to local storage //
 let prevSch = [];
 $('.search').on("click", function (event) {
   event.preventDefault();
@@ -69,66 +86,125 @@ function currentWeather() {
   $.ajax
     ({ url: apiCurrent, method: 'GET' })
 
+    .then(function (response) {
+      $('.cityCurrentName').text(response.name);
+      $('.cityCurrentDate').text(date);
+      $('.icons').attr('src', "https://openweathermap.org/img/wn/"
+      .concat(response.weather[0].icon, "@2x.png"));
 
-        
-    
-    
-    request = $.ajax({
-            url:'https://api.openweathermap.org/data/2.5/weather',
-            type: "GET",
-            data: {
-                q: $("#city").val(),
-                appid: 'faa63307397f9a8437455fc4cacc3cd2',
-                units: 'imperial'
-            }
-        });
+      let elSpeed = $('<a>').text("Wind Speed: ".concat(response.wind.speed, " MPH"));
+      cityCurrentMain.append(elSpeed);
 
-        request.done(function(response) {
-            formatSearch(response);
+      let elMain = $('<p>').text("Temperature: ".concat(response.main.temp, " \xB0F"));
+      cityCurrentMain.append(elMain);
+
+      let elHumidity = $('<a>').text("Humidity: ".concat(response.main.humidity, " %"));
+      cityCurrentMain.append(elHumidity);
+
+      let coordLon = response.coord.lon;
+      let coordLat = response.coord.lat;
+
+      let fetchUvi = "https://api.openweathermap.org/data/2.5/onecall?lat=".concat(coordLat, "&lon=")
+        .concat(coordLon, "&exclude=hourly,daily,minutely&appid=").concat(key);
+
+      $.ajax
+        ({ url: fetchUvi, method: 'GET' })
+
+        .then(function (response) {
+          let uviIndex = $('<p>').text("UV Index: ");
+
+          let elUvi = $('<span>').text(response.current.uvi);
+
+          let uvi = response.current.uvi;
+          uviIndex.append(elUvi);
+          cityCurrentMain.append(uviIndex);
+
+		//   Finally.... The UV Index Color changes!!!!!! //
+          if (uvi >= 0 && uvi <= 4) {
+            elUvi.attr('class', 'low');
+
+          } else if (uvi > 5 && uvi <= 7) {
+            elUvi.attr("class", "medium");
+
+          } else if (uvi > 8 && uvi <= 12) {
+            elUvi.attr("class", "barbeque");
+          }
+
         });
+    });
+
+  getOutlook();
+
 }
 
-var cityCurrentBody = $('.cityCurrentBody')
-function currentWeather() {
-	var apiCurrent = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${key}`;
+let elOutlook = $('.fiveDay');
 
-	$(cityCurrentBody).empty();
+function getOutlook() {
+  let fetchOutlook = "https://api.openweathermap.org/data/2.5/forecast?q="
+    .concat(city, "&units=imperial&appid=").concat(key);
 
-	$.ajax({
-		url: apiCurrent,
-		method: 'GET',
-	}).then(function (response) {
-		$('.cityCurrentName').text(response.name);
-		$('.cityCurrentDate').text(date);
-		$('.icons').attr('src', `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`);
+  $.ajax
+    ({ url: fetchOutlook, method: 'GET' })
 
-        
-// Display current weather data
-        $("#city-name").text(city_name);
-        $("#city-weather").text(city_weather);
-        $("#city-temp").text(city_temp+ "℉");
+    .then(function (response) {
+      let outlookArray = response.list;
+      let elWeather = [];
 
-        // use another fetch (openweathermap.org) to get UVI
-        $("#cityUvIndex").text("UV Index" +cityUvIndex);
+      $.each
+      (outlookArray, function (index, value) {
 
-        cityUvIndex.addClass; {
+        elData = {
+          icon: value.weather[0].icon,
+          date: value.dt_txt.split(' ')[0],
+          time: value.dt_txt.split(' ')[1],
+          temp: value.main.temp,
+          humidity: value.main.humidity
+        };
 
-            if (uvi >= 0 && uvi <= 4) {
-                elUvi.attr('class', 'green');
-    
-              } else if (uvi > 5 && uvi <= 7) {
-                elUvi.attr("class", "orange");
-    
-              } else if (uvi > 8 && uvi <= 12) {
-                elUvi.attr("class", "red");
-              }
+        if (value.dt_txt.split(' ')[1] === "12:00:00") {
+          elWeather.push(elData);
+        }
 
- var elOutlook = $('.fiveDay');
+      });
 
+    //   create the forecast cards //
+      for (let i = 0; i < elWeather.length; i++) {
 
+        let elCard = $('<div>');
+        elCard.attr('class', 'card bg-primary text-white mb-4');
+        elOutlook.append(elCard);
 
+        let elHeader = $('<div>');
+        elHeader.attr('class', 'card-header');
 
-}}
+        let m = moment("".concat(elWeather[i].date))
+          .format('MM-DD-YYYY');
+        elHeader.text(m);
+        elCard.append(elHeader);
+
+       let elMain = $('<div>');
+        elMain.attr('class', 'card-body');
+        elCard.append(elMain);
+
+        let elIcon = $('<img>');
+
+        // icons will render based on weather object returned: https://openweathermap.org/weather-conditions //
+        elIcon.attr('src', "https://openweathermap.org/img/wn/".concat(elWeather[i].icon, "@2x.png"));
+        elMain.append(elIcon);
+
+        let elHumidity = $('<a>').text("Humidity: ".concat(elWeather[i].humidity, " %"));
+        elMain.append(elHumidity);
+
+        let elTemp = $('<p>').text("Temperature: ".concat(elWeather[i].temp, " \xB0F"));
+        elMain.append(elTemp);
+
+      }
+
+    });
+};
 
 init();
+initPrevSch();
+prevSchSet.addEventListener('click', prevSchClick);
 
+  
