@@ -44,6 +44,12 @@ label {
 	margin-top: 10px;
 	font-weight: bold;
 	font-size: 20px;
+  margin-left: 3rem;
+  text-shadow: 0 0 1px rgba(0, 0, 0);
+}
+
+.cityText{
+  margin-left: 2rem;
 }
 
 .list-group {
@@ -70,6 +76,14 @@ h4 {
 h6 {
 	font-weight: bold;
   }
+
+.btn-primary  {
+  /* background-color: blueviolet; */
+  margin-top: 1rem;
+  margin-left: 2.5rem;
+  Margin-bottom: 1rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0);
+}
     
 .card {
   border-radius: 2.25rem;
