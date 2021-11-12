@@ -49,7 +49,6 @@ function persist() {
         
         listButton.addClass('btn btn-primary prevObjBtn <br>');
         listItem.addClass('row prevObjRow');
-        // listButton.addClass('btn btn-primary prevObjBtn <br>');
         listButton.attr('type', 'button');
 
         elPrevList.prepend(listItem);
@@ -60,8 +59,11 @@ function persist() {
 
         .on("click", function (event) {
             city = $(this).text();
+
             event.preventDefault();
+
             elOutlook.empty();
+            
             currentWeather();
 
         });
