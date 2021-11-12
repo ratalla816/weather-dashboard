@@ -1,0 +1,22 @@
+{
+  "name": "weather-dashboard",
+  "version": "1.0.0",
+  "description": "Get weather data for any city on earth",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ratalla816/weather-dashboard.git"
+  },
+  "author": "Rob Atalla",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ratalla816/weather-dashboard/issues"
+  },
+  "homepage": "https://github.com/ratalla816/weather-dashboard#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
