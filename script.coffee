@@ -1,3 +1,6 @@
+
+# I tried to write this in coffeescript for funzies, but I could not get it to work with $ajax :(
+
 key = 'faa63307397f9a8437455fc4cacc3cd2'
 
 prevSch = []
