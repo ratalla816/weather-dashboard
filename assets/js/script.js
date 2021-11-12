@@ -207,7 +207,7 @@ function getOutlook() {
 };
 
 init();
-initPrevSch();
+// initPrevSch();
 prevSchSet.addEventListener('click', prevSchClick);
 
   
