@@ -1,4 +1,7 @@
 let key = 'faa63307397f9a8437455fc4cacc3cd2';
+// const require = require('dotenv').config()
+// const key = require('key')
+
 
 function init() {
   let prevSchSet = JSON.parse(localStorage.getItem('city'));

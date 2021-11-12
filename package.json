@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ratalla816/weather-dashboard#readme",
   "dependencies": {
+    "custom-env": "^2.0.1",
     "dotenv": "^10.0.0"
   }
 }
