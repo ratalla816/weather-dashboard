@@ -121,7 +121,7 @@ function currentWeather() {
                     if (uvi >= 0 && uvi <= 4) {
                         elUvi.attr('class', 'low');
 
-                    } else if (uvi > 5 && uvi <= 7) {
+                    } else if (uvi > 4 && uvi <= 7) {
                         elUvi.attr("class", "medium");
 
                     } else if (uvi > 8 && uvi <= 12) {
