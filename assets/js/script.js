@@ -124,7 +124,7 @@ function currentWeather() {
                     } else if (uvi > 4 && uvi <= 7) {
                         elUvi.attr("class", "medium");
 
-                    } else if (uvi > 8 && uvi <= 12) {
+                    } else if (uvi > 8 && uvi <= 20) {
                         elUvi.attr("class", "barbeque");
                     }
 
